@@ -1,5 +1,9 @@
 package pl.kluczify.models;
 
+import com.google.gson.annotations.SerializedName;
+import pl.kluczify.communication.utils.JsonConverter;
+import pl.kluczify.communication.utils.Jsonable;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -8,20 +12,23 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "rooms")
-public class Room {
+public class Room implements Jsonable{
 
     // Private fields
-
+    @SerializedName("id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @SerializedName("number")
     @NotNull
     private String roomNumber;
 
+    @SerializedName("type")
     @NotNull
     private String roomType;
 
+    @SerializedName("location")
     @NotNull
     private String roomLocation;
 
@@ -66,6 +73,16 @@ public class Room {
     }
     public void setRoomLocation(String value) {
         this.roomLocation = value;
+    }
+
+
+    @Override
+    public String toJson() {
+        return JsonConverter.toJson(this);
+    }
+
+    public static Room fromJson(String json) {
+        return JsonConverter.fromJson(json, Room.class);
     }
 
 }

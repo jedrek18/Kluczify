@@ -1,5 +1,9 @@
 package pl.kluczify.models;
 
+import com.google.gson.annotations.SerializedName;
+import pl.kluczify.communication.utils.JsonConverter;
+import pl.kluczify.communication.utils.Jsonable;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -8,26 +12,32 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Jsonable {
 
     // Private fields
 
+    @SerializedName("id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @SerializedName("username")
     @NotNull
     private String userName;
 
+    @SerializedName("name")
     @NotNull
     private String firstName;
 
+    @SerializedName("lastName")
     @NotNull
     private String lastName;
 
+    @SerializedName("email")
     @NotNull
     private String emailAddress;
 
+    @SerializedName("password")
     @NotNull
     private String password;
 
@@ -92,6 +102,16 @@ public class User {
     public void setPassword(String value) {
         this.password = value;
     }
+
+    @Override
+    public String toJson() {
+        return JsonConverter.toJson(this);
+    }
+
+    public static User fromJson(String json) {
+        return JsonConverter.fromJson(json, User.class);
+    }
+
 
 }
 
