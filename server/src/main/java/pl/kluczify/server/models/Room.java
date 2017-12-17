@@ -1,8 +1,8 @@
-package pl.kluczify.models;
+package pl.kluczify.server.models;
 
 import com.google.gson.annotations.SerializedName;
-import pl.kluczify.communication.utils.JsonConverter;
-import pl.kluczify.communication.utils.Jsonable;
+import pl.kluczify.server.utils.JsonConverter;
+import pl.kluczify.server.utils.Jsonable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

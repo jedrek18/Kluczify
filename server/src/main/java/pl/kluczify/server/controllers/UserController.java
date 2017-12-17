@@ -1,11 +1,11 @@
-package pl.kluczify.controllers;
+package pl.kluczify.server.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.kluczify.models.User;
-import pl.kluczify.models.UserDao;
+import pl.kluczify.server.models.User;
+import pl.kluczify.server.models.UserDao;
 
 /**
  * Created by jedrek on 17.12.17.

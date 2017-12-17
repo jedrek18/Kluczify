@@ -1,4 +1,4 @@
-package pl.kluczify.models;
+package pl.kluczify.server.models;
 
 import org.springframework.data.repository.CrudRepository;
 

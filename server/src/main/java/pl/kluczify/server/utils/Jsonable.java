@@ -1,4 +1,4 @@
-package pl.kluczify.communication.utils;
+package pl.kluczify.server.utils;
 
 public interface Jsonable {
 
