@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pl.kluczify.lock.srvices.UserService;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 public class UserController {
@@ -17,7 +17,7 @@ public class UserController {
 
 	@RequestMapping("/create")
 	@ResponseBody
-	public void create(long id, LocalDateTime startDate, LocalDateTime expirationDate, List<String> roomList) {
+	public void create(long id, LocalDateTime startDate, LocalDateTime expirationDate, ArrayList<String> roomList) {
 		userService.addUser(id, startDate, expirationDate, roomList);
 	}
 

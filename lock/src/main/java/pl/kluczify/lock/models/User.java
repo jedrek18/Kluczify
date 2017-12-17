@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,9 +23,9 @@ public class User {
 	private LocalDateTime expirationDate;
 
 	@NotNull
-	private List<String> roomList;
+	private ArrayList<String> roomList;
 
-	public User(long id, LocalDateTime startDate, LocalDateTime expirationDate, List<String> roomList) {
+	public User(long id, LocalDateTime startDate, LocalDateTime expirationDate, ArrayList<String> roomList) {
 		this.id = id;
 		this.startDate = startDate;
 		this.expirationDate = expirationDate;
@@ -59,7 +60,7 @@ public class User {
 		return roomList;
 	}
 
-	public void setRoomList(List<String> roomList) {
+	public void setRoomList(ArrayList<String> roomList) {
 		this.roomList = roomList;
 	}
 }
