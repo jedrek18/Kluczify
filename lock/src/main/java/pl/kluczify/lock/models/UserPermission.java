@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="users")
-public class User {
+@Table(name="users_permissions")
+public class UserPermission {
 
 	@Id
 	@NotNull
@@ -25,11 +25,15 @@ public class User {
 	@NotNull
 	private ArrayList<String> roomList;
 
-	public User(long id, LocalDateTime startDate, LocalDateTime expirationDate, ArrayList<String> roomList) {
+	@NotNull
+	private LocalDateTime timeStamp;
+
+	public UserPermission(long id, LocalDateTime startDate, LocalDateTime expirationDate, ArrayList<String> roomList, LocalDateTime timeStamp) {
 		this.id = id;
 		this.startDate = startDate;
 		this.expirationDate = expirationDate;
 		this.roomList = roomList;
+		this.timeStamp = timeStamp;
 	}
 
 	public long getId() {
@@ -63,4 +67,13 @@ public class User {
 	public void setRoomList(ArrayList<String> roomList) {
 		this.roomList = roomList;
 	}
+
+	public LocalDateTime getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(LocalDateTime timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
 }
