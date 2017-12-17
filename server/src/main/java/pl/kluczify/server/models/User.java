@@ -6,6 +6,7 @@ import pl.kluczify.server.utils.Jsonable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by jedrek on 17.12.17.
@@ -20,6 +21,9 @@ public class User implements Jsonable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private List<Permission> permissions;
 
     @SerializedName("username")
     @NotNull
