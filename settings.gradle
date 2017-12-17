@@ -1,0 +1,10 @@
+rootProject.name = 'Kluczify'
+
+include 'server'
+project(':server').projectDir = new File('server')
+
+include 'client'
+project(':client').projectDir = new File('client')
+
+include 'lock'
+project(':lock').projectDir = new File('lock')
