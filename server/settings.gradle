@@ -1,5 +1,5 @@
 include 'client'
 project(':client').projectDir = new File('../client')
 
-//include ':lock'
-//project(':lock').projectDir = new File('../lock')
+include 'lock'
+project(':lock').projectDir = new File('../lock')
