@@ -18,7 +18,7 @@ public class UserController {
 
     //Public methods
 
-    @RequestMapping("/create")
+    @RequestMapping("/create-user")
     @ResponseBody
     public String create(String userName, String firstName, String lastName, String emailAddress, String password) {
         User user = null;
@@ -33,7 +33,7 @@ public class UserController {
         return "User succesfully created! (id = " + user.getId() + ")";
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping("/delete-user")
     @ResponseBody
     public String delete(long id) {
         try {
@@ -46,12 +46,12 @@ public class UserController {
         return "User succesfully deleted!";
     }
 
-    @RequestMapping("/get-by-email")
+    @RequestMapping("/get-user-by-email")
     @ResponseBody
-    public String getByEmail(String email) {
+    public String getByEmail(String emailAddress) {
         String userId;
         try {
-            User user = userDao.findByEmail(email);
+            User user = userDao.findByEmailAddress(emailAddress);
             userId = String.valueOf(user.getId());
         }
         catch (Exception ex) {
@@ -60,7 +60,7 @@ public class UserController {
         return "The user id is: " + userId;
     }
 
-    @RequestMapping("/update")
+    @RequestMapping("/update-user")
     @ResponseBody
     public String updateUser(long id, String firstName, String lastName, String emailAddress) {
         try {
