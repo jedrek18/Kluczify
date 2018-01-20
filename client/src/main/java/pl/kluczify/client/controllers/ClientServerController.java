@@ -18,9 +18,7 @@ public class ClientServerController {
     @RequestMapping("/lol")
     @ResponseBody
     private String sendGet(String url) throws Exception {
-        url="http://87.206.156.190:2138/";
         URL obj = new URL(url);
-        //2139 port
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         con.setRequestMethod("GET");
