@@ -3,19 +3,17 @@ package pl.kluczify.lock.controllers;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import pl.kluczify.lock.models.Lock;
 import pl.kluczify.lock.models.UserPermission;
 import pl.kluczify.lock.srvices.UserPermissionsService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
-@Controller
+@RestController
 public class UserPermissionsController {
 
     @Autowired
@@ -53,9 +51,15 @@ public class UserPermissionsController {
             String roomLocation= null;
             Lock userPermission = userPermissionsService.getLock(id);
             if ((userPermission == null)) {
-                userPermissionsService.addLock(  id,  lastOpenDateTime,
-                isOpen,    userPermissionsList,  roomNumber,  roomType,
-                roomLocation);
+                userPermissionsService.addLock(
+                		id,
+						lastOpenDateTime,
+		                isOpen,
+		                userPermissionsList,
+		                roomNumber,
+		                roomType,
+                        roomLocation
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,18 +103,19 @@ public class UserPermissionsController {
 
 	@RequestMapping("/check")
 	@ResponseBody
-	public void checkPermission(JSONObject json) {
+	public boolean checkPermission(JSONObject json) {
 		try {
 			Long id = json.getLong("id");
+			String token = json.getString("token");
 			String roomNumber = json.getString("roomNumber");
 			LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"));
 
-			userPermissionsService.checkUserPermission(id, roomNumber, openDateTime);
+			return userPermissionsService.checkUserPermission(id, token, roomNumber, openDateTime);
 
 		} catch (JSONException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
-
 
 }
