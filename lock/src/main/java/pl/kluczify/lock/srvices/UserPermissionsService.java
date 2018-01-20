@@ -31,7 +31,7 @@ public class UserPermissionsService {
     }
 
     public void addLock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation){
-        lockDao.save(new Lock(id,lastOpenDateTime,isOpen,userPermissionsList,roomNumber,roomType,roomLocation);
+        lockDao.save(new Lock(id,lastOpenDateTime,isOpen,userPermissionsList,roomNumber,roomType,roomLocation));
     }
 
     public UserPermission getPerm(long id) {

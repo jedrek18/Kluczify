@@ -48,7 +48,7 @@ public class UserPermissionsController {
             ArrayList< UserPermission > userPermissionsList= null;
             String roomNumber= null;
             String roomType= null;
-            String roomLocation= null
+            String roomLocation= null;
             Lock userPermission = userPermissionsService.getLock(id);
             if ((userPermission == null)) {
                 userPermissionsService.addLock(  id,  lastOpenDateTime,
