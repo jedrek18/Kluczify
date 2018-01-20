@@ -2,7 +2,9 @@ package pl.kluczify.lock.srvices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.kluczify.lock.dao.UserDao;
+import pl.kluczify.lock.dao.LockDao;
+import pl.kluczify.lock.dao.UserPermissionDao;
+import pl.kluczify.lock.models.Lock;
 import pl.kluczify.lock.models.UserPermission;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -19,15 +21,27 @@ public class UserPermissionsService {
     private final String USER_AGENT = "Mozilla/5.0";
 
     @Autowired
-    UserDao userDao;
+    UserPermissionDao userDao;
 
-    public void addUserPermissions(long id, LocalDateTime startDate, LocalDateTime expirationDate, ArrayList<String> roomList, LocalDateTime timeStamp) {
-        userDao.save(new UserPermission(id, startDate, expirationDate, roomList, timeStamp));
+    @Autowired
+    LockDao lockDao;
+
+    public void addUserPermissions(long id, LocalDateTime startDate, LocalDateTime expirationDate, String roomNumber, String tokenToOpen) {
+        userDao.save(new UserPermission(id, startDate, expirationDate, roomNumber,tokenToOpen));
     }
 
-    public UserPermission get(long id) {
+    public void addLock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation){
+        lockDao.save(new Lock(id,lastOpenDateTime,isOpen,userPermissionsList,roomNumber,roomType,roomLocation);
+    }
+
+    public UserPermission getPerm(long id) {
         return userDao.findOne(id);
     }
+
+    public Lock getLock(long id) {
+        return lockDao.findOne(id);
+    }
+
 
 
     private String sendGet(String url) throws Exception {

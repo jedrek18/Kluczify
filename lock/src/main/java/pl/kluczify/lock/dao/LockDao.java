@@ -1,11 +1,11 @@
 package pl.kluczify.lock.dao;
 
 import org.springframework.data.repository.CrudRepository;
-import pl.kluczify.lock.models.UserPermission;
+import pl.kluczify.lock.models.Lock;
 
 import javax.transaction.Transactional;
 
 @Transactional
-public interface UserDao extends CrudRepository<UserPermission, Long> {
+public interface LockDao extends CrudRepository<Lock, Long> {
 
 }
