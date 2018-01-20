@@ -12,91 +12,91 @@ import java.util.ArrayList;
 @Table(name="lock")
 public class Lock {
 
-    @Id
-    @NotNull
-    private long id;
+	@Id
+	@NotNull
+	private long id;
 
-    @NotNull
-    private LocalDateTime lastOpenDateTime;
+	@NotNull
+	private LocalDateTime lastOpenDateTime;
 
-    @NotNull
-    private Boolean isOpen;
+	@NotNull
+	private Boolean isOpen;
 
-    private ArrayList<UserPermission> userPermissionsList;
+	private ArrayList<UserPermission> userPermissionsList;
 
-    @NotNull
-    private String roomNumber;
+	@NotNull
+	private String roomNumber;
 
-    private String roomType;
+	private String roomType;
 
-    private String roomLocation;
+	private String roomLocation;
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public LocalDateTime getLastOpenDateTime() {
-        return lastOpenDateTime;
-    }
+	public LocalDateTime getLastOpenDateTime() {
+		return lastOpenDateTime;
+	}
 
-    public Boolean getOpen() {
-        return isOpen;
-    }
+	public Boolean getOpen() {
+		return isOpen;
+	}
 
-    public ArrayList<UserPermission> getUserPermissionsList() {
-        return userPermissionsList;
-    }
+	public ArrayList<UserPermission> getUserPermissionsList() {
+		return userPermissionsList;
+	}
 
-    public String getRoomNumber() {
-        return roomNumber;
-    }
+	public String getRoomNumber() {
+		return roomNumber;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public void setLastOpenDateTime(LocalDateTime lastOpenDateTime) {
-        this.lastOpenDateTime = lastOpenDateTime;
-    }
+	public void setLastOpenDateTime(LocalDateTime lastOpenDateTime) {
+		this.lastOpenDateTime = lastOpenDateTime;
+	}
 
-    public void setOpen(Boolean open) {
-        isOpen = open;
-    }
+	public void setOpen(Boolean open) {
+		isOpen = open;
+	}
 
-    public void setUserPermissionsList(ArrayList<UserPermission> userPermissionsList) {
-        this.userPermissionsList = userPermissionsList;
-    }
+	public void setUserPermissionsList(ArrayList<UserPermission> userPermissionsList) {
+		this.userPermissionsList = userPermissionsList;
+	}
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
+	}
 
-    public Lock() {
-    }
+	public Lock() {
+	}
 
-    public String getRoomType() {
-        return roomType;
-    }
+	public String getRoomType() {
+		return roomType;
+	}
 
-    public String getRoomLocation() {
-        return roomLocation;
-    }
+	public String getRoomLocation() {
+		return roomLocation;
+	}
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
 
-    public void setRoomLocation(String roomLocation) {
-        this.roomLocation = roomLocation;
-    }
+	public void setRoomLocation(String roomLocation) {
+		this.roomLocation = roomLocation;
+	}
 
-    public Lock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
-        this.id = id;
-        this.lastOpenDateTime = lastOpenDateTime;
-        this.isOpen = isOpen;
-        this.userPermissionsList = userPermissionsList;
-        this.roomNumber = roomNumber;
-        this.roomType = roomType;
-        this.roomLocation = roomLocation;
-    }
+	public Lock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
+		this.id = id;
+		this.lastOpenDateTime = lastOpenDateTime;
+		this.isOpen = isOpen;
+		this.userPermissionsList = userPermissionsList;
+		this.roomNumber = roomNumber;
+		this.roomType = roomType;
+		this.roomLocation = roomLocation;
+	}
 }

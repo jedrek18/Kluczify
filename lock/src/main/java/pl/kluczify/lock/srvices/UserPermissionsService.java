@@ -155,10 +155,10 @@ public class UserPermissionsService {
 			secondLock = (secondLock + 1) % 4;
 		}
 
-		String urlParameters = "id=" + id + "&roomNumber=" + roomNumber + "&openDateTime=" + openDateTime.toString();
+		String urlParameters = "id=" + id + "&token=" + token + "&roomNumber=" + roomNumber + "&openDateTime=" + openDateTime.toString();
 		try {
-			boolean firstLockFlag = new Boolean(sendGet(locksAddresses[firstLock] + "/check?" + urlParameters));
-			boolean secondLockFlag = new Boolean(sendGet(locksAddresses[secondLock] + "/check?" + urlParameters));
+			boolean firstLockFlag = Boolean.valueOf(sendGet(locksAddresses[firstLock] + "/check?" + urlParameters));
+			boolean secondLockFlag = Boolean.valueOf(sendGet(locksAddresses[secondLock] + "/check?" + urlParameters));
 
 			return (firstLockFlag || secondLockFlag);
 		} catch (Exception e) {
