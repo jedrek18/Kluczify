@@ -12,7 +12,6 @@ import pl.kluczify.server.models.UserDao;
  */
 @Controller
 public class UserController {
-
     @Autowired
     private UserDao userDao;
 
