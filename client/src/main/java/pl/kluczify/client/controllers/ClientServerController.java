@@ -1,5 +1,9 @@
 package pl.kluczify.client.controllers;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -7,11 +11,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+@Controller
 public class ClientServerController {
     private final String USER_AGENT = "Mozilla/5.0";
 
+    @RequestMapping("/lol")
+    @ResponseBody
     private String sendGet(String url) throws Exception {
+        url="http://87.206.156.190:2138/";
         URL obj = new URL(url);
+        //2139 port
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         con.setRequestMethod("GET");
