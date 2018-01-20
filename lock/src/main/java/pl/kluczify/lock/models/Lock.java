@@ -27,9 +27,7 @@ public class Lock {
     @NotNull
     private String roomNumber;
 
-
     private String roomType;
-
 
     private String roomLocation;
 

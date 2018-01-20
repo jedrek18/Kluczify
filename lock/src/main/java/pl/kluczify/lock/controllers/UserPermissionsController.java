@@ -12,6 +12,8 @@ import pl.kluczify.lock.srvices.UserPermissionsService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 @Controller
 public class UserPermissionsController {
@@ -59,6 +61,56 @@ public class UserPermissionsController {
             e.printStackTrace();
         }
     }
+
+
+    // Parametry od klienta o klienta(Long id, String token, roomNumber,Date openDateTime)
+
+    @RequestMapping("/open")
+    @ResponseBody
+    public void tryToOpen(JSONObject json) {
+        try {
+            Long id = json.getLong("id");
+            String token = json.getString("token");
+            String roomNumber = json.getString("roomNumber");
+            LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"));
+
+            userPermissionsService.openLock(id, token, roomNumber, openDateTime);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping("/close")
+    @ResponseBody
+    public void tryToClose(JSONObject json) {
+        try {
+            Long id = json.getLong("id");
+            String token = json.getString("token");
+            String roomNumber = json.getString("roomNumber");
+            LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"));
+
+            userPermissionsService.closeLock(id, token, roomNumber, openDateTime);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+	@RequestMapping("/check")
+	@ResponseBody
+	public void checkPermission(JSONObject json) {
+		try {
+			Long id = json.getLong("id");
+			String roomNumber = json.getString("roomNumber");
+			LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"));
+
+			userPermissionsService.checkUserPermission(id, roomNumber, openDateTime);
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 }

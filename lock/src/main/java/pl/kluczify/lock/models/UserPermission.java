@@ -67,4 +67,33 @@ public class UserPermission {
 	public void setRoomNumber(String roomNumber) {
 		this.roomNumber = roomNumber;
 	}
+
+	public String getTokenToOpen() {
+		return tokenToOpen;
+	}
+
+	public void setTokenToOpen(String tokenToOpen) {
+		this.tokenToOpen = tokenToOpen;
+	}
+
+	public boolean canRuleLock(Long id, String token, String roomNumber, LocalDateTime openDateTime) {
+		if((id != null) && (this.id == id)) {
+			if((roomNumber != null) && roomNumber.equals(this.roomNumber)) {
+				if ((token != null) && (token.equals(this.tokenToOpen))) {
+					if((openDateTime != null) && openDateTime.isAfter(this.startDate) && openDateTime.isBefore(this.expirationDate)) {
+						return true;
+					}
+				} else {
+					System.out.println("Wrong token - expected: " + this.tokenToOpen);
+				}
+			} else {
+				System.out.println("Wrong roomNumber - expected: " + this.roomNumber);
+			}
+		} else {
+			System.out.println("Wrong id - expected: " + this.id);
+		}
+		return false;
+	}
+
+
 }

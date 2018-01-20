@@ -15,6 +15,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserPermissionsService {
@@ -41,8 +43,6 @@ public class UserPermissionsService {
     public Lock getLock(long id) {
         return lockDao.findOne(id);
     }
-
-
 
     private String sendGet(String url) throws Exception {
         URL obj = new URL(url);
@@ -98,6 +98,43 @@ public class UserPermissionsService {
 
         //print result
         return response.toString();
+    }
+
+    public void openLock(Long id, String token, String roomNumber, LocalDateTime openDateTime) {
+	    Lock lockConfig = lockDao.findOne(0L);
+
+    	if(!lockConfig.getOpen()) {
+		    List<UserPermission> userPermissionList;
+		    if((userPermissionList = lockConfig.getUserPermissionsList()) != null) {
+		    	for (UserPermission up : userPermissionList) {
+			    	if (up.canRuleLock(id, token, roomNumber, openDateTime)) {
+					    System.out.println(" ---------------------- USER " + id + " OPENING LOCK ---------------------- ");
+				    }
+			    }
+		    }
+	    } else {
+		    System.out.println(" ---------------------- LOCK ALREADY OPENED ---------------------- ");
+	    }
+    }
+
+    public void closeLock(Long id, String token, String roomNumber, LocalDateTime openDateTime) {
+	    Lock lockConfig = lockDao.findOne(0L);
+
+	    if(lockConfig.getOpen()) {
+		    List<UserPermission> userPermissionList;
+		    if((userPermissionList = lockConfig.getUserPermissionsList()) != null) {
+			    for (UserPermission up : userPermissionList) {
+				    if (up.canRuleLock(id, token, roomNumber, openDateTime)) {
+					    System.out.println(" ---------------------- USER " + id + " CLOSING LOCK ---------------------- ");
+				    }
+			    }
+		    }
+	    } else {
+		    System.out.println(" ---------------------- LOCK ALREADY CLOSED ---------------------- ");
+	    }
+    }
+
+    public void checkUserPermission(Long id, String roomNumber, LocalDateTime openDateTime) {
 
     }
 
