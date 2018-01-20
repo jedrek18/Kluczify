@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-@SpringBootApplication
+@SpringBootApplication()
 public class ClientApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClientApplication.class, args);
