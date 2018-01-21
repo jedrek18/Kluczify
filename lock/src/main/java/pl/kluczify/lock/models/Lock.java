@@ -23,7 +23,7 @@ public class Lock {
 	@NotNull
 	private Boolean isOpen;
 
-	private List<UserPermission> userPermissionsList;
+	private ArrayList<UserPermission> userPermissionsList;
 
 	@NotNull
 	private String roomNumber;
@@ -44,7 +44,7 @@ public class Lock {
 		return isOpen;
 	}
 
-	public List<UserPermission> getUserPermissionsList() {
+	public ArrayList<UserPermission> getUserPermissionsList() {
 		return userPermissionsList;
 	}
 
@@ -64,7 +64,7 @@ public class Lock {
 		isOpen = open;
 	}
 
-	public void setUserPermissionsList(List<UserPermission> userPermissionsList) {
+	public void setUserPermissionsList(ArrayList<UserPermission> userPermissionsList) {
 		this.userPermissionsList = userPermissionsList;
 	}
 
@@ -91,7 +91,7 @@ public class Lock {
 		this.roomLocation = roomLocation;
 	}
 
-	public Lock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, List<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
+	public Lock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
 		this.id = id;
 		this.lastOpenDateTime = lastOpenDateTime;
 		this.isOpen = isOpen;

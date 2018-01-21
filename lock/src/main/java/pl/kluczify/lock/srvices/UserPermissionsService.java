@@ -24,10 +24,10 @@ public class UserPermissionsService {
 	private final String USER_AGENT = "Mozilla/5.0";
 
 	@Autowired
-	UserPermissionDao userDao;
+	private UserPermissionDao userDao;
 
 	@Autowired
-	LockDao lockDao;
+	private LockDao lockDao;
 
 	private String[] locksAddresses = {
 			"localhost:2147",
@@ -40,7 +40,7 @@ public class UserPermissionsService {
 		userDao.save(new UserPermission(id, startDate, expirationDate, roomNumber, tokenToOpen));
 	}
 
-	public void addLock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, List<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
+	public void addLock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
 		lockDao.save(new Lock(id, lastOpenDateTime, isOpen, userPermissionsList, roomNumber, roomType, roomLocation));
 	}
 

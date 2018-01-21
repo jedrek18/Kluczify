@@ -21,6 +21,7 @@ public class UserPermissionsController {
 
 	@Autowired
 	private UserPermissionsService userPermissionsService;
+
 	private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 	@RequestMapping("/updateUserPermissions")
@@ -50,7 +51,7 @@ public class UserPermissionsController {
 			LocalDateTime lastOpenDateTime = LocalDateTime.parse(json.getString("lastOpenDateTime"), dateTimeFormatter);
 			Boolean isOpen = json.getBoolean("isOpen");
 
-			List<UserPermission> userPermissionsList = new ArrayList<>();
+			ArrayList<UserPermission> userPermissionsList = new ArrayList<>();
 			JSONArray jsonArray = json.getJSONArray("userPermissionsList");
 			for (int i = 0; i < jsonArray.length(); i++) {
 				userPermissionsList.add(createUserPermissionFromJSON(jsonArray.getJSONObject(i)));
