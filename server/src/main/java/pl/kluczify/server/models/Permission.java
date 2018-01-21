@@ -3,6 +3,7 @@ package pl.kluczify.server.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class Permission {
     private long id;
 
     @ManyToOne
-    @JoinColumn (name="user_id",referencedColumnName="id",nullable=false,unique=true)
+    @JoinColumn (name="user_id",referencedColumnName="id",nullable=false,unique=false)
     private User user;
 
 
@@ -41,10 +42,12 @@ public class Permission {
         this.id = id;
     }
 
-    public Permission(User user, LocalDateTime creationDate, LocalDateTime expiryDate) {
+    public Permission(User user, LocalDateTime creationDate, LocalDateTime expiryDate, Room room) {
+        rooms = new ArrayList<>();
         this.user = user;
         this.creationDate = creationDate;
         this.expiryDate = expiryDate;
+        this.rooms.add(room);
     }
 
     // Getter and setter methods
@@ -82,5 +85,10 @@ public class Permission {
     }
     public void setRooms(List<Room> rooms){
         this.rooms = rooms;
+    }
+
+    public List<Room> addRoom(Room room){
+        this.rooms.add(room);
+        return rooms;
     }
 }

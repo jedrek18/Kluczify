@@ -81,28 +81,27 @@ public class User implements Jsonable {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String value) {
         this.firstName = value;
     }
+
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String value) {
         this.lastName = value;
     }
+
     public String getUserName() {
-        return lastName;
+        return userName;
+    }
+    public void setUserName(String value) {
+        this.userName = value;
     }
 
-    public void setUserName(String value) {
-        this.lastName = value;
-    }
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String value) {
         this.password = value;
     }
