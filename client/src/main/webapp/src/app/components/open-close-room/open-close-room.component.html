@@ -1,0 +1,66 @@
+<div>
+  <h4>Sale znajdujące się w pobliżu:
+    <a class="btn btn-info btn-md">
+      <i class="fa fa-refresh"></i>
+    </a>
+  </h4>
+
+  <ul class="list-group" style="max-width:400px;margin-left:auto;margin-right:auto">
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between" (click)="sss()">
+        <svg height="20" width="20">
+          <circle cx="10" cy="10" r="5" stroke="black" stroke-width="2" fill="red" />
+        </svg>
+        <div>Sala 133</div>
+        <small>Zamknięte</small>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <svg height="20" width="20">
+          <circle cx="10" cy="10" r="5" stroke="black" stroke-width="2" fill="green" />
+        </svg>
+        <div>Sala 143</div>
+        <small>Otwarta</small>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <svg height="20" width="20">
+          <circle cx="10" cy="10" r="5" stroke="black" stroke-width="2" fill="red" />
+        </svg>
+        <div>Sala 135</div>
+        <small>Zamknięte</small>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <svg height="20" width="20">
+          <circle cx="10" cy="10" r="5" stroke="black" stroke-width="2" fill="green" />
+        </svg>
+        <div>Sala 138</div>
+        <small>Otwarta</small>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <svg height="20" width="20">
+          <circle cx="10" cy="10" r="5" stroke="black" stroke-width="2" fill="green" />
+        </svg>
+        <div>Sala AR</div>
+        <small>Otwarta</small>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <svg height="20" width="20">
+          <circle cx="10" cy="10" r="5" stroke="black" stroke-width="2" fill="green" />
+        </svg>
+        <div>Sala 152</div>
+        <small>Otwarta</small>
+      </div>
+    </li>
+  </ul>
+
+  {{roomsList}}
+</div>
