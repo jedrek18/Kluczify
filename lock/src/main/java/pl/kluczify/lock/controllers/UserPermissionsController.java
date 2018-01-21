@@ -1,5 +1,6 @@
 package pl.kluczify.lock.controllers;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,24 +12,27 @@ import pl.kluczify.lock.models.UserPermission;
 import pl.kluczify.lock.srvices.UserPermissionsService;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class UserPermissionsController {
 
 	@Autowired
-	UserPermissionsService userPermissionsService;
-
+	private UserPermissionsService userPermissionsService;
+	private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 	@RequestMapping("/updateUserPermissions")
 	@ResponseBody
-	public void updatePermissionFromServer(JSONObject param) {
-		Long id = null;
+	public void updatePermissionFromServer(JSONObject json) {
 		try {
-			id = (Long) param.getLong("id");
-			LocalDateTime startDate = null , expirationDate = null;
-			String roomNumber = null;
-			String tokenToOpen = null;
+			Long id = json.getLong("id");
+			LocalDateTime startDate = LocalDateTime.parse(json.getString("startTime"), dateTimeFormatter);
+			LocalDateTime expirationDate = LocalDateTime.parse(json.getString("expirationDate"), dateTimeFormatter);
+			String roomNumber = json.getString("roomNumber");
+			String tokenToOpen = json.getString("token");
+
 			UserPermission userPermission = userPermissionsService.getPerm(id);
 			if ((userPermission == null)) {
 				userPermissionsService.addUserPermissions(id, startDate, expirationDate, roomNumber, tokenToOpen);
@@ -40,15 +44,21 @@ public class UserPermissionsController {
 
 	@RequestMapping("/updateLock")
 	@ResponseBody
-	public void updateLock(JSONObject obj) {
+	public void updateLock(JSONObject json) {
 		try {
-			Long id = null;
-			LocalDateTime lastOpenDateTime= null;
-			Boolean isOpen= null;
-			ArrayList< UserPermission > userPermissionsList= null;
-			String roomNumber= null;
-			String roomType= null;
-			String roomLocation= null;
+			Long id = json.getLong("id");
+			LocalDateTime lastOpenDateTime = LocalDateTime.parse(json.getString("lastOpenDateTime"), dateTimeFormatter);
+			Boolean isOpen = json.getBoolean("isOpen");
+
+			List<UserPermission> userPermissionsList = new ArrayList<>();
+			JSONArray jsonArray = json.getJSONArray("userPermissionsList");
+			for (int i = 0; i < jsonArray.length(); i++) {
+				userPermissionsList.add(createUserPermissionFromJSON(jsonArray.getJSONObject(i)));
+			}
+
+			String roomNumber = json.getString("roomNumber");
+			String roomType = json.getString("roomType");
+			String roomLocation = json.getString("roomLocation");
 			Lock userPermission = userPermissionsService.getLock(id);
 			if ((userPermission == null)) {
 				userPermissionsService.addLock(
@@ -66,6 +76,15 @@ public class UserPermissionsController {
 		}
 	}
 
+	private UserPermission createUserPermissionFromJSON(JSONObject json) {
+		long id = json.getLong("id");
+		LocalDateTime startDate = LocalDateTime.parse(json.getString("startDate"), dateTimeFormatter);
+		LocalDateTime expirationDate = LocalDateTime.parse(json.getString("expirationDate"), dateTimeFormatter);
+		String roomNumber = json.getString("roomNumber");
+		String tokenToOpen = json.getString("tokenToOpen");
+
+		return new UserPermission(id, startDate, expirationDate, roomNumber, tokenToOpen);
+	}
 
 	// Parametry od klienta o klienta(Long id, String token, roomNumber,Date openDateTime)
 
@@ -76,7 +95,7 @@ public class UserPermissionsController {
 			Long id = json.getLong("id");
 			String token = json.getString("token");
 			String roomNumber = json.getString("roomNumber");
-			LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"));
+			LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"), dateTimeFormatter);
 
 			userPermissionsService.openLock(id, token, roomNumber, openDateTime);
 
@@ -92,7 +111,7 @@ public class UserPermissionsController {
 			Long id = json.getLong("id");
 			String token = json.getString("token");
 			String roomNumber = json.getString("roomNumber");
-			LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"));
+			LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"), dateTimeFormatter);
 
 			userPermissionsService.closeLock(id, token, roomNumber, openDateTime);
 
@@ -108,7 +127,7 @@ public class UserPermissionsController {
 			Long id = json.getLong("id");
 			String token = json.getString("token");
 			String roomNumber = json.getString("roomNumber");
-			LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"));
+			LocalDateTime openDateTime = LocalDateTime.parse(json.getString("openDateTime"), dateTimeFormatter);
 
 			return userPermissionsService.checkUserPermission(id, token, roomNumber, openDateTime);
 

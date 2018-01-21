@@ -7,6 +7,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="lock")
@@ -22,7 +23,7 @@ public class Lock {
 	@NotNull
 	private Boolean isOpen;
 
-	private ArrayList<UserPermission> userPermissionsList;
+	private List<UserPermission> userPermissionsList;
 
 	@NotNull
 	private String roomNumber;
@@ -43,7 +44,7 @@ public class Lock {
 		return isOpen;
 	}
 
-	public ArrayList<UserPermission> getUserPermissionsList() {
+	public List<UserPermission> getUserPermissionsList() {
 		return userPermissionsList;
 	}
 
@@ -63,7 +64,7 @@ public class Lock {
 		isOpen = open;
 	}
 
-	public void setUserPermissionsList(ArrayList<UserPermission> userPermissionsList) {
+	public void setUserPermissionsList(List<UserPermission> userPermissionsList) {
 		this.userPermissionsList = userPermissionsList;
 	}
 
@@ -90,7 +91,7 @@ public class Lock {
 		this.roomLocation = roomLocation;
 	}
 
-	public Lock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
+	public Lock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, List<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
 		this.id = id;
 		this.lastOpenDateTime = lastOpenDateTime;
 		this.isOpen = isOpen;
