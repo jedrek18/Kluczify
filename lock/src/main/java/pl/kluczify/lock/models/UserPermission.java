@@ -23,17 +23,17 @@ public class UserPermission {
 	private LocalDateTime expirationDate;
 
 	@NotNull
-	private ArrayList<String> roomList;
+	private String roomNumber;
 
 	@NotNull
-	private LocalDateTime timeStamp;
+	private String tokenToOpen;
 
-	public UserPermission(long id, LocalDateTime startDate, LocalDateTime expirationDate, ArrayList<String> roomList, LocalDateTime timeStamp) {
+	public UserPermission(long id, LocalDateTime startDate, LocalDateTime expirationDate, String roomNumber, String tokenToOpen) {
 		this.id = id;
 		this.startDate = startDate;
 		this.expirationDate = expirationDate;
-		this.roomList = roomList;
-		this.timeStamp = timeStamp;
+		this.roomNumber = roomNumber;
+		this.tokenToOpen = tokenToOpen;
 	}
 
 	public long getId() {
@@ -60,20 +60,40 @@ public class UserPermission {
 		this.expirationDate = expirationDate;
 	}
 
-	public List<String> getRoomList() {
-		return roomList;
+	public String getRoomNumber() {
+		return roomNumber;
 	}
 
-	public void setRoomList(ArrayList<String> roomList) {
-		this.roomList = roomList;
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
 	}
 
-	public LocalDateTime getTimeStamp() {
-		return timeStamp;
+	public String getTokenToOpen() {
+		return tokenToOpen;
 	}
 
-	public void setTimeStamp(LocalDateTime timeStamp) {
-		this.timeStamp = timeStamp;
+	public void setTokenToOpen(String tokenToOpen) {
+		this.tokenToOpen = tokenToOpen;
 	}
+
+	public boolean canRuleLock(Long id, String token, String roomNumber, LocalDateTime openDateTime) {
+		if((id != null) && (this.id == id)) {
+			if((roomNumber != null) && roomNumber.equals(this.roomNumber)) {
+				if ((token != null) && (token.equals(this.tokenToOpen))) {
+					if((openDateTime != null) && openDateTime.isAfter(this.startDate) && openDateTime.isBefore(this.expirationDate)) {
+						return true;
+					}
+				} else {
+					System.out.println("Wrong token - expected: " + this.tokenToOpen);
+				}
+			} else {
+				System.out.println("Wrong roomNumber - expected: " + this.roomNumber);
+			}
+		} else {
+			System.out.println("Wrong id - expected: " + this.id);
+		}
+		return false;
+	}
+
 
 }

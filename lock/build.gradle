@@ -30,10 +30,15 @@ dependencies {
 	compile('org.springframework.session:spring-session')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
+	compile group: 'org.json', name: 'json', version: '20171018'
+
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
 	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.12.Final'
 
 	runtime('com.h2database:h2')
+	//compile group: 'com.h2database', name: 'h2', version: '1.4.196'
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
+
 }
