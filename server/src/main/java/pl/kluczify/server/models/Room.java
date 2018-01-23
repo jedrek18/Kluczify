@@ -85,5 +85,10 @@ public class Room implements Jsonable{
         return JsonConverter.fromJson(json, Room.class);
     }
 
+    @Override
+    public String toString() {
+        return "id:" + this.id + ", room number:" + this.roomNumber;
+    }
+
 }
 

@@ -7,98 +7,97 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="lock")
 public class Lock {
 
-    @Id
-    @NotNull
-    private long id;
+	@Id
+	@NotNull
+	private long id;
 
-    @NotNull
-    private LocalDateTime lastOpenDateTime;
+	@NotNull
+	private LocalDateTime lastOpenDateTime;
 
-    @NotNull
-    private Boolean isOpen;
+	@NotNull
+	private Boolean isOpen;
 
-    private ArrayList<UserPermission> userPermissionsList;
+	private ArrayList<UserPermission> userPermissionsList;
 
-    @NotNull
-    private String roomNumber;
+	@NotNull
+	private String roomNumber;
 
+	private String roomType;
 
-    private String roomType;
+	private String roomLocation;
 
+	public long getId() {
+		return id;
+	}
 
-    private String roomLocation;
+	public LocalDateTime getLastOpenDateTime() {
+		return lastOpenDateTime;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public Boolean getOpen() {
+		return isOpen;
+	}
 
-    public LocalDateTime getLastOpenDateTime() {
-        return lastOpenDateTime;
-    }
+	public ArrayList<UserPermission> getUserPermissionsList() {
+		return userPermissionsList;
+	}
 
-    public Boolean getOpen() {
-        return isOpen;
-    }
+	public String getRoomNumber() {
+		return roomNumber;
+	}
 
-    public ArrayList<UserPermission> getUserPermissionsList() {
-        return userPermissionsList;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public String getRoomNumber() {
-        return roomNumber;
-    }
+	public void setLastOpenDateTime(LocalDateTime lastOpenDateTime) {
+		this.lastOpenDateTime = lastOpenDateTime;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public void setOpen(Boolean open) {
+		isOpen = open;
+	}
 
-    public void setLastOpenDateTime(LocalDateTime lastOpenDateTime) {
-        this.lastOpenDateTime = lastOpenDateTime;
-    }
+	public void setUserPermissionsList(ArrayList<UserPermission> userPermissionsList) {
+		this.userPermissionsList = userPermissionsList;
+	}
 
-    public void setOpen(Boolean open) {
-        isOpen = open;
-    }
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
+	}
 
-    public void setUserPermissionsList(ArrayList<UserPermission> userPermissionsList) {
-        this.userPermissionsList = userPermissionsList;
-    }
+	public Lock() {
+	}
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+	public String getRoomType() {
+		return roomType;
+	}
 
-    public Lock() {
-    }
+	public String getRoomLocation() {
+		return roomLocation;
+	}
 
-    public String getRoomType() {
-        return roomType;
-    }
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
 
-    public String getRoomLocation() {
-        return roomLocation;
-    }
+	public void setRoomLocation(String roomLocation) {
+		this.roomLocation = roomLocation;
+	}
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public void setRoomLocation(String roomLocation) {
-        this.roomLocation = roomLocation;
-    }
-
-    public Lock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
-        this.id = id;
-        this.lastOpenDateTime = lastOpenDateTime;
-        this.isOpen = isOpen;
-        this.userPermissionsList = userPermissionsList;
-        this.roomNumber = roomNumber;
-        this.roomType = roomType;
-        this.roomLocation = roomLocation;
-    }
+	public Lock(long id, LocalDateTime lastOpenDateTime, Boolean isOpen, ArrayList<UserPermission> userPermissionsList, String roomNumber, String roomType, String roomLocation) {
+		this.id = id;
+		this.lastOpenDateTime = lastOpenDateTime;
+		this.isOpen = isOpen;
+		this.userPermissionsList = userPermissionsList;
+		this.roomNumber = roomNumber;
+		this.roomType = roomType;
+		this.roomLocation = roomLocation;
+	}
 }

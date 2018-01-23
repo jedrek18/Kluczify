@@ -1,0 +1,24 @@
+<div class="login-page">
+    <div class="login-card">
+        <h3 class="form-title app-name">Kluczify</h3>
+        <h4 class="form-title">Logowanie</h4>
+        <form>
+            <div>
+                <input type="text" class="form-control" name="username" id="username"/>
+                <label for="username">Login</label>
+            </div>
+            <div>
+                <input type="password" class="form-control" id="password" name="password"/>
+                <label for="password">Hasło</label>
+            </div>
+        </form>
+        <button type="button" class="btn btn-success" (click)="login()">
+            Zaloguj się
+        </button>
+        <div *ngIf="loading" style="position: fixed; left: 50%; margin: 0;"></div>
+        <div *ngIf="badAuth" style="color: red">Błędny login lub hasło!</div>
+    </div>
+
+    <div class="form-footer">
+    </div>
+</div>
