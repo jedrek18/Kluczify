@@ -1,5 +1,9 @@
 package pl.kluczify.client.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import pl.kluczify.client.services.ClientService;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -7,7 +11,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+@Controller
 public class ClientLockController {
+
+    @Autowired
+    private ClientService clientService;
+
     private final String USER_AGENT = "Mozilla/5.0";
 
     private String sendGet(String url) throws Exception {
@@ -65,5 +74,16 @@ public class ClientLockController {
         //print result
         return response.toString();
 
+    }
+
+    public ClientLockController() {
+    }
+
+    public void setClientService(ClientService clientService) {
+        this.clientService = clientService;
+    }
+
+    public ClientService getClientService() {
+        return clientService;
     }
 }

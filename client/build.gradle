@@ -23,11 +23,21 @@ repositories {
 }
 
 dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.session:spring-session')
 	compile('org.springframework.boot:spring-boot-starter-web')
+
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
+	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.12.Final'
+
+	runtime('com.h2database:h2')
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
+
+	compile group: 'org.json', name: 'json', version: '20171018'
 }
 
 def webappDir = "$projectDir/src/main/webapp"
