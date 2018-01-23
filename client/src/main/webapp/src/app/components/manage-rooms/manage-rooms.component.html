@@ -1,9 +1,48 @@
 <div style="margin-left: auto;margin-right: auto;">
-  <h4>Lista dostępnych sal:</h4>
-  {{availableRooms}}
+  <h4 ng-if="availableRooms !== null">Lista dostępnych sal:</h4>
+  <ul style="max-width: 500px;margin: auto;">
+    <li *ngFor="let availableRoom of availableRooms">
+      {{ availableRoom}}
+    </li>
+  </ul>
 
 
   <div style="margin-top:50px">
     <button class="btn btn-primary btn-lg" (click)="requestNewRoom()"><i class="fa fa-plus"></i>  Uzyskaj dostęp do nowej sali</button>
+  </div>
+</div>
+
+
+<div id="newAccessModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Uzyskaj dostęp do nowej sali</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="roomNumber">Nr sali</label>
+          <input class="form-control" id="roomNumber" name="roomNumber"/>
+        </div>
+        <div>
+          <label for="roomAccessType">Rodzaj przepustki</label>
+          <select name="roomAccessType" id="roomAccessType" ng-model="roomAccessType" style="display:block;width:300px;margin:auto">
+            <option value="">---Wybierz---</option>
+            <option value="">Jednodniowa</option>
+            <option value="">Tygodniowa</option>
+            <option value="">Weekendowa</option>
+            <option value="">Semestralna</option>
+            <option value="">Roczna</option>
+          </select><br>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addNewUserAccess()">Dodaj</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+      </div>
+    </div>
   </div>
 </div>

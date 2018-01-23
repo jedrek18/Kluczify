@@ -7,14 +7,23 @@ import {Router} from "@angular/router";
 })
 
 export class ManageRoomsComponent {
-    availableRooms = '';
+    availableRooms = [
+      "AR - Audytorium im. prof. St. Ryżko (105)",
+      "115",
+      "573",
+      "123"
+    ];
 
     constructor( private router: Router) {
 
     }
 
     private requestNewRoom(){
-
+      $('#newAccessModal').modal('show');
     }
 
+    private addNewUserAccess(){
+      $('#newAccessModal').modal('hide');
+
+    }
 }
