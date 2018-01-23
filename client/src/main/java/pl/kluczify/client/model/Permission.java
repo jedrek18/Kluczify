@@ -15,7 +15,7 @@ public class Permission {
 
     @Id
     @NotNull
-    private long id;
+    private Long id;
 
     @NotNull
     private Date startDate;
@@ -29,7 +29,7 @@ public class Permission {
     @NotNull
     private String tokenToOpen;
 
-    public Permission(long id, Date startDate, Date expirationDate, String roomNumber, String tokenToOpen) {
+    public Permission(Long id, Date startDate, Date expirationDate, String roomNumber, String tokenToOpen) {
         this.id = id;
         this.startDate = startDate;
         this.expirationDate = expirationDate;
@@ -37,11 +37,11 @@ public class Permission {
         this.tokenToOpen = tokenToOpen;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

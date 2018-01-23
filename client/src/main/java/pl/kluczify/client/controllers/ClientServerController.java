@@ -1,13 +1,9 @@
 package pl.kluczify.client.controllers;
 
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.kluczify.client.dao.ClientDao;
-import pl.kluczify.client.dao.PermissionDao;
 import pl.kluczify.client.model.Client;
 import pl.kluczify.client.model.Permission;
 import pl.kluczify.client.services.ClientService;
@@ -19,7 +15,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 @Controller
 public class ClientServerController {
@@ -89,9 +84,9 @@ public class ClientServerController {
     @RequestMapping("/req")
     @ResponseBody
     public void lol123(){
-        Client client = new Client(1,null);
+        Client client = new Client(Long.valueOf(1),null);
         client = clientService.addClient(1);
-        clientService.addPermissionToUser(client,new Permission(1,new Date(132123),new Date(7777777),"S123","tOK546"));
+        clientService.addPermissionToUser(client,new Permission(Long.valueOf(1),new Date(132123),new Date(7777777),"S123","tOK546"));
         System.out.println("Date: "+clientService.getPerm(1).getExpirationDate());
     }
 

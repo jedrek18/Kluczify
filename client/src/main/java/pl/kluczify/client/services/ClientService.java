@@ -1,12 +1,13 @@
 package pl.kluczify.client.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import pl.kluczify.client.dao.ClientDao;
 import pl.kluczify.client.dao.PermissionDao;
+import pl.kluczify.client.dao.PersistentDao;
 import pl.kluczify.client.model.Client;
 import pl.kluczify.client.model.Permission;
+
 import java.sql.Date;
 
 @Service
@@ -17,6 +18,9 @@ public class ClientService {
 
     @Autowired
     private PermissionDao permissionDao;
+
+    @Autowired
+    private PersistentDao persistentDao;
 
     public Permission addPermissions(long id, Date startDate, Date expirationDate, String roomNumber, String tokenToOpen) {
         return permissionDao.save(new Permission(id, startDate, expirationDate, roomNumber, tokenToOpen));

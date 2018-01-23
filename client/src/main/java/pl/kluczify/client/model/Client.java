@@ -12,11 +12,11 @@ import java.util.ArrayList;
 public class Client {
 
     @Id
-    private long id;
+    private Long id;
 
     private ArrayList<Permission> userPermissionsList;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -24,7 +24,7 @@ public class Client {
         return userPermissionsList;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,10 +39,12 @@ public class Client {
         this.id = id;
     }
 
-    public Client(long id, ArrayList<Permission> userPermissionsList) {
+    public Client(Long id, ArrayList<Permission> userPermissionsList) {
         this.id = id;
         this.userPermissionsList = userPermissionsList;
     }
+
+
 }
 
 

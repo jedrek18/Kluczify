@@ -77,7 +77,7 @@ public class UserPermissionsController {
 		}
 	}
 
-	private UserPermission createUserPermissionFromJSON(JSONObject json) {
+	private UserPermission createUserPermissionFromJSON(JSONObject json) throws JSONException {
 		long id = json.getLong("id");
 		LocalDateTime startDate = LocalDateTime.parse(json.getString("startDate"), dateTimeFormatter);
 		LocalDateTime expirationDate = LocalDateTime.parse(json.getString("expirationDate"), dateTimeFormatter);

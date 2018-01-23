@@ -1,7 +1,7 @@
 package pl.kluczify.client.dao;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import pl.kluczify.client.model.Client;
 import javax.transaction.Transactional;
 

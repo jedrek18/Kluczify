@@ -2,8 +2,6 @@ package pl.kluczify.client.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import pl.kluczify.client.dao.ClientDao;
-import pl.kluczify.client.dao.PermissionDao;
 import pl.kluczify.client.services.ClientService;
 
 import javax.net.ssl.HttpsURLConnection;
