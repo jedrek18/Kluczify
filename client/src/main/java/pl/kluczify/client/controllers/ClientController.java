@@ -1,7 +1,15 @@
 package pl.kluczify.client.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
+
 public class ClientController {
+    @Autowired
     ClientServerController clientServerController;
+
+    @Autowired
     ClientLockController clientLockController;
 
     public ClientController() {
